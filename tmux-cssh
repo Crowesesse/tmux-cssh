@@ -97,10 +97,12 @@ analyseParameters() {
 				shift;;
 			-dc|--dont-clusterize|-ds|--dont-synchronize) SYNCHRONIZE_PANES="false";;
 			*)
-				if [ "$HOSTS" == "" ]; then
+				if [ "$HOSTS" == "" ] && [ "$1" != "" ]; then
 					HOSTS="$1"
 				else
-					HOSTS="${HOSTS},$1"
+					if [ "$1" != "" ]; then
+						HOSTS="${HOSTS},$1"
+					fi
 				fi
 			;;
 		esac
